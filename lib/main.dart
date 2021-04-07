@@ -1,18 +1,22 @@
 void chooseBestDistance(int t, int k, List<int> ls) {
   try {
-    if (t >= 0 && k >= 0 && ls.isNotEmpty && ls.length > 1) {
+    if (t >= 0 && k >= 0 && k <= 5 && ls.isNotEmpty && ls.length > 1) {
       List<int> new_list = [];
+      int sum = ls[0];
+      int i;
 
-      for (int i = 0; i < ls.length; i++) {
-        for (int j = 1; j < ls.length - 2; j++) {
-          for (int m = 2; m < ls.length - 1; m++) {
-            new_list.add(ls[i] + ls[j] + ls[m]);
-          }
+      for (int j = 0; j < ls.length; j++) {
+        for (i = 0; i <= k; i++) {
+          sum = sum + ls[i + 1];
+          new_list.add(sum);
         }
+        sum = ls[j];
       }
 
+      print(new_list);
+
       for (int i = new_list.length - 1; i >= 0; i--) {
-        if (new_list[i] < t) {
+        if (new_list[i] <= t) {
           print(new_list[i]);
           break;
         }
